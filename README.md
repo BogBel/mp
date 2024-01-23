@@ -1,4 +1,4 @@
-# Wool Price Comparison Portal - Coding Task for MARKT-PILOT
+# Wool Price Comparison Portal
 ## Introduction
 
 This repository contains my solution for a software development coding task focusing on web scraping and data aggregation. The primary objective of the task is to create a wool price comparison portal, initially featuring data extraction from "Wollplatz" (https://www.wollplatz.de/). The project aims to provide valuable insights for wool products by comparing various attributes like price, availability, needle size, and composition.
