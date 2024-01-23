@@ -26,8 +26,6 @@ class Wollplatz(BaseCrawler):
         search_page_response = await self.perform_request(
             RequestData.search_url, params=params, headers=RequestData.headers
         )
-        with open("search_found.html", "w") as file:
-            file.write(search_page_response.text)
         left_split = search_page_response.text.split(
             "sendSearchQueryByScriptCompleted(", 1
         )[1]
@@ -43,15 +41,17 @@ class Wollplatz(BaseCrawler):
             return
         tree = self.build_lxml_tree(json_data["resultsPanel"]["html"])
 
-        # Here i just assumed that the first product is the one we want
         search_product = self.parse_xpath(
             tree, SearchPaths.search_products, _all=True
         )
         name_url_map = [
             (u.get("title"), u.get("href")) for u in search_product
         ]
+        # This logic should be moved to the base crawler
+        # Here I just take the first product that starts with the brand name
         search_product = next(
-            url for title, url in name_url_map if title.lower().startswith(search_query.brand_name.lower())
+            url for title, url in name_url_map 
+            if title.lower().startswith(search_query.brand_name.lower())
         )
         if not search_product:
             # TODO: error logging

@@ -11,33 +11,8 @@ services:
       - .:/app
     environment:
       - REDIS_URL=redis://redis:6379
-    # networks:
-    #   - mp_network
-
   redis:
     image: "redis:latest"
-    # networks:
-    #   - mp_network
     ports:
       - "6379:6379"
 
-#   selenium:
-#     platform: linux/amd64
-#     # image: "selenium/standalone-chrome:latest"
-#     image: "selenium/standalone-firefox:latest"  # Use the latest tag or specify a version
-#     networks:
-#       - mp_network
-#     ports:
-#       - "4444:4444"
-#     environment:
-#       START_XVFB: 'false'
-#       SE_NODE_MAX_SESSIONS: 5
-#       JAVA_OPTS: "-XX:ActiveProcessorCount=5"
-#       SE_NODE_OVERRIDE_MAX_SESSIONS: 5
-#     deploy:
-#       resources:
-#         limits:
-#           cpus: '2.0'  # Limit to 2 CPUs
-#           memory: 2048M  # Limit to 2048MB of memory
-# networks:
-#   mp_network:  # Define a custom network named 'my_network'

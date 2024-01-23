@@ -18,7 +18,7 @@ class SearchPaths:
 class RequestData:
     headers = {
         # TODO: User-agent should be randomised
-        "User-Agent": "Mozilla/5.0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0",
         "Accept": "*/*",
         "Accept-Language": "en-GB,en;q=0.5",
         "DNT": "1",
