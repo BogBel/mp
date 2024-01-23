@@ -38,7 +38,8 @@ The technical components of the project include:
   3. Navigate to the root directory of the project in your terminal.
   4. Run docker-compose up -d.
   5. Access the API documentation and test the API calls at: http://0.0.0.0:8000/docs.
-
+  6. To access redis execute following: `docker-compose exec redis redis-cli` 
+  7. To read the logs execute following: `docker-compose logs -f app`
 ## Running Tests
 
 To execute the tests after the Docker containers are up and running, follow these steps:
@@ -61,9 +62,20 @@ This process allows you to run your test suite within the context of your applic
 2. Data Storage for Results
 
     Implementation: Chose Redis due to the dynamic nature of data (frequent changes in availability and price). Stored data in a key-value format, where the key is **query:{query.id}:{crawler_name}** and the value is a JSON string of crawled data.
+    An example of the keys stored in Redis:
+    ```redis
+      127.0.0.1:6379> keys *
+      1) "query:3:wollplatz"
+      2) "query:1:wollplatz"
+      3) "query:5:wollplatz"
+      4) "query:2:wollplatz"
+      127.0.0.1:6379> get query:2:wollplatz
+      "{\"url\":\"https://www.wollplatz.de/artikel/35246/drops-safran-60-moss-green.html\",\"product_name\":\"Drops Safran\",\"brand\":\"Drops\",\"price\":{\"value\":1.55,\"currency\":\"EUR\"},\"availability\":true,\"needle_size\":\"3 mm\",\"composition\":\"100% Baumwolle\"}"
+    127.0.0.1:6379>
+    ```
     Alternative Considered: Elasticsearch, which could be more efficient at scale, especially for search and analytics.
 
-3. Approach to Testing
+4. Approach to Testing
 
    Implementation: Some tests have been written to cover the logic of data converters. It's ideal to have all functions that parse data and do not rely on online sources covered with unit tests to ensure the correctness of the parsing logic.
 
