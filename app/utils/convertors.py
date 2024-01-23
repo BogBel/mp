@@ -9,10 +9,10 @@ def currency_parser(val: Union[str, None]) -> str:
     currency_map = {
         "€": Currency.EUR,
         "euro": Currency.EUR,
-        "EUR": Currency.EUR,
-        "GBP": Currency.GBP,
+        "eur": Currency.EUR,
+        "gbp": Currency.GBP,
         "£": Currency.GBP,
-        "USD": Currency.USD,
+        "usd": Currency.USD,
         "$": Currency.USD,
     }
     val = val.strip().lower()
